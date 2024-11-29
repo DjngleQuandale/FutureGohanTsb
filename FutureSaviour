@@ -1,0 +1,501 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local playerGui = player:WaitForChild("PlayerGui")
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local buttonData = {
+     {name = "1", text = "Fast Pacing Barrage"},
+    {name = "2", text = "Headfirst Slam"},
+    {name = "3", text = "Ki Blast"},
+    {name = "4", text = "Meteor Combination"},
+}
+
+for _, data in pairs(buttonData) do
+    local baseButton = hotbarFrame:FindFirstChild(data.name).Base
+    local ToolName = baseButton.ToolName
+    ToolName.Text = data.text
+end
+
+local function waitForGui()
+    while true do
+        local screenGui = playerGui:FindFirstChild("ScreenGui")
+        if screenGui then
+            local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+            if magicHealthFrame then
+                local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+                if textLabel then
+                    textLabel.Text = "FUTURE SAVIOUR"
+                end
+              
+                local healthBar = magicHealthFrame:FindFirstChild("Health").Bar.Bar
+                if healthBar then
+                    healthBar.ImageColor3 = Color3.fromRGB(255, 255, 0)
+                end
+                
+                return
+            end
+        end
+        wait(1)
+    end
+end
+waitForGui()
+
+local replacementAnimations = {
+    ["12273188754"] = "rbxassetid://13560306510",
+    ["12296113986"] = "rbxassetid://18182425133",
+    ["12309835105"] = "rbxassetid://12618271998",
+    ["13603396939"] = "rbxassetid://18181589384",
+    ["12342141464"] = "rbxassetid://17292505729",
+    ["12467789963"] = "rbxassetid://13146710762",
+    ["14057231976"] = "rbxassetid://13083332742",
+ ["15957376722"] = "rbxassetid://17292505729",
+ ["14516273501"] = "rbxassetid://14516273501",
+}
+
+local function applyVFX(animationId)
+    local vfxAttachment
+    if animationId == "13560306510" then
+        vfxAttachment = game.ReplicatedStorage.Resources["FSSlash"].Attachment
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = character.HumanoidRootPart
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.new(255, 255, 0))
+                child:Emit(15)
+                child.Enabled = true
+            end
+        end
+        wait(2)
+        vfxClone:Destroy()
+end
+    elseif animationId == "18182425133" then
+                 wait(1)
+        vfxAttachment = game.ReplicatedStorage.Resources.AtomicSlash["Explosion2"].Explosion2.Explosion
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = character.HumanoidRootPart
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+                child:Emit(15)
+                child.Enabled = true
+            end
+        end
+        wait(0.5)
+        vfxClone:Destroy()
+end
+    elseif animationId == "12618271998" then
+        vfxAttachment = game.ReplicatedStorage.Resources.StoicBomb["OHNO"].Normal:GetChildren()[2]
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.new(255, 255, 0))
+                child:Emit(15)
+                child.Enabled = true
+            end
+        end
+        wait(2)
+        vfxClone:Destroy()
+end
+    elseif animationId == "18181589384" then
+        vfxAttachment = game.ReplicatedStorage.Resources.StoicBomb["HEAT"].Part.Attachment
+
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = character.HumanoidRootPart
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.new(255, 255, 0))
+                child:Emit(15)
+                child.Enabled = true
+            end
+        end
+        wait(2)
+        vfxClone:Destroy()
+end
+    elseif animationId == "13083332742" then
+        vfxAttachment = game.ReplicatedStorage.Resources["SkyRuler"].ThrowDown.Part.Attachment
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+vfxClone.CFrame = CFrame.Angles(0, math.rad(45), 0)
+        vfxClone.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.new(255, 255, 0))
+                child:Emit(0)
+                child.Enabled = true
+            end
+        end
+        wait(2)
+        vfxClone:Destroy()
+end
+    elseif animationId == "13146710762" then
+        vfxAttachment = game.ReplicatedStorage.Resources["SkyRuler"].ThrowDown.Part.Attachment
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+vfxClone.CFrame = CFrame.Angles(0, math.rad(45), 0)
+        vfxClone.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+                child:Emit(0)
+                child.Enabled = true
+            end
+        end
+        wait(2)
+        vfxClone:Destroy()
+end
+elseif animationId == "17292505729" then
+        vfxAttachment = game.ReplicatedStorage.Resources["CyborgArms"].Outer.Attachment
+elseif animationId == "14516273501" then
+        vfxAttachment = game.ReplicatedStorage.Resources["CyborgArms"].Outer.Attachment      
+elseif animationId == "13146710762" then
+        vfxAttachment = game.ReplicatedStorage.Resources.StoicBomb["OHNO"].Normal:GetChildren()[2]
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+                child:Emit(15)
+                child.Enabled = true
+            end
+        end
+        wait(1)
+        vfxClone:Destroy()
+end
+elseif animationId == "13083332742" then
+        vfxAttachment = game.ReplicatedStorage.Resources.StoicBomb["OHNO"].Normal:GetChildren()[2]
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.new(255, 255, 0))
+                child:Emit(15)
+                child.Enabled = true
+            end
+        end
+        wait(1)
+        vfxClone:Destroy()
+end
+if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = character.HumanoidRootPart
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+                child:Emit(1)
+                child.Enabled = true
+            end
+        end
+        wait(1)
+        vfxClone:Destroy()
+end
+    else
+        warn("VFX is missing for animation bruh" .. tostring(animationId))
+    end
+end
+
+local function onAnimationPlayed(animationTrack)
+    local animationId = animationTrack.Animation.AnimationId:match("%d+")
+    local replacementId = replacementAnimations[animationId]
+
+    applyVFX(animationId)
+
+    if replacementId then
+        animationTrack:Stop()
+        local newAnimation = Instance.new("Animation")
+        newAnimation.AnimationId = replacementId
+        local newTrack = humanoid:LoadAnimation(newAnimation)
+        newTrack:Play()
+    end
+end
+
+local OriginalName1 = "Water Stream Rock Smashing"
+local OriginalName2 = "The Final Hunt"
+local OriginalName3 = "Rock Splitting Fist"
+local OriginalName4 = "Crushed Rock"
+
+local UltMovesetName1 = "One Armed Barrage"
+local UltMovesetName2 = "One Hand Kamehameha"
+local UltMovesetName3 = "Masenko"
+local UltMovesetName4 = "Final Slam"
+
+local toolNamesToReplace = {
+    ["1"] = {original = OriginalName1, new = UltMovesetName1},
+    ["2"] = {original = OriginalName2, new = UltMovesetName2},
+    ["3"] = {original = OriginalName3, new = UltMovesetName3},
+    ["4"] = {original = OriginalName4, new = UltMovesetName4}
+}
+
+local function checkAndReplaceToolName()
+    while character.Humanoid.Health > 100 do
+        local hotbar = playerGui:FindFirstChild("Hotbar")
+        if hotbar then
+            local backpack = hotbar:FindFirstChild("Backpack")
+            if backpack then
+                local hotbarFrame = backpack:FindFirstChild("Hotbar")
+                if hotbarFrame then
+                    for buttonName, toolData in pairs(toolNamesToReplace) do
+                        local baseButton = hotbarFrame:FindFirstChild(buttonName) and hotbarFrame[buttonName]:FindFirstChild("Base")
+                        if baseButton then
+                            local toolName = baseButton:FindFirstChild("ToolName")
+                            if toolName and toolName.Text == toolData.original then
+                                toolName.Text = toolData.new
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        wait(1)
+    end
+end
+
+checkAndReplaceToolName()
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    humanoid = newCharacter:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+end)
+local Test = game.ReplicatedStorage.Resources.StoicBomb["HEAT"].Part.Attachment
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["Torso"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+
+   child.Color = ColorSequence.new(Color3.new(255, 255, 0))   
+
+        child:Emit(1)
+        child.Enabled = true
+    end
+end
+
+local Test = game.ReplicatedStorage.Resources.StoicBomb["stoic bomb boom entrance"].Attachment
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["Torso"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+
+   child.Color = ColorSequence.new(Color3.new(255, 255, 0))   
+
+        child:Emit(1)
+        child.Enabled = true
+    end
+end
+
+local Test = game.ReplicatedStorage.Resources["GreenTornado"].Go2.Part:GetChildren()[2]
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["Torso"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+
+   child.Color = ColorSequence.new(Color3.new(0, 255, 255))   
+
+        child:Emit(1)
+        child.Enabled = true
+    end
+end
+local Test = game.ReplicatedStorage.Resources["GreenTornado"].Go2.Part:GetChildren()[2]
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["Torso"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+
+   child.Color = ColorSequence.new(Color3.new(0, 255, 255))   
+
+        child:Emit(1)
+        child.Enabled = true
+    end
+end
+local Test = game.ReplicatedStorage.Resources["GreenTornado"].Go2.Part:GetChildren()[2]
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["Torso"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+
+   child.Color = ColorSequence.new(Color3.new(0, 255, 255))   
+
+        child:Emit(1)
+        child.Enabled = true
+    end
+end
+local Test = game.ReplicatedStorage.Resources.StoicBomb["HEAT"].Part.Attachment
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["Torso"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+
+   child.Color = ColorSequence.new(Color3.new(0, 255, 255))   
+
+        child:Emit(1)
+        child.Enabled = true
+    end
+end
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+while not LocalPlayer do
+    wait()
+    LocalPlayer = Players.LocalPlayer
+end
+
+local function createTool(name)
+    local newTool = Instance.new("Tool")
+    newTool.Name = name
+    newTool.RequiresHandle = false
+    newTool.CanBeDropped = false
+    newTool.Parent = LocalPlayer.Backpack
+    return newTool
+end
+
+local function bindTeleportLogic(tool)
+    tool.Activated:Connect(function()
+        teleportToClosestPlayer(tool)
+    end)
+end
+
+local tool = createTool("Instant Transmission")
+bindTeleportLogic(tool)
+
+local teleportSound = Instance.new("Sound")
+teleportSound.SoundId = "rbxassetid://6438294336"
+teleportSound.Volume = 2
+teleportSound.Looped = false
+teleportSound.PlayOnRemove = false
+teleportSound.Parent = LocalPlayer
+
+local teleportAnimation = Instance.new("Animation")
+teleportAnimation.AnimationId = "rbxassetid://18716004830"
+
+local teleportDistance = 50
+
+local function findClosestPlayer()
+    local player = LocalPlayer
+    local character = player.Character
+    if not character then return nil end
+
+    local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+    if not humanoidRootPart then return nil end
+
+    local closestPlayer = nil
+    local shortestDistance = math.huge
+
+    for _, otherPlayer in pairs(Players:GetPlayers()) do
+        if otherPlayer ~= player and otherPlayer.Character and otherPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local otherHumanoidRootPart = otherPlayer.Character.HumanoidRootPart
+            local distance = (humanoidRootPart.Position - otherHumanoidRootPart.Position).magnitude
+
+            if (not teleportDistance or distance <= teleportDistance) and distance < shortestDistance then
+                shortestDistance = distance
+                closestPlayer = otherPlayer
+            end
+        end
+    end
+
+    return closestPlayer, shortestDistance
+end
+
+function teleportToClosestPlayer(tool)
+    local player = LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    local closestPlayer, distance = findClosestPlayer()
+
+    if closestPlayer and closestPlayer.Character then
+        local closestHumanoidRootPart = closestPlayer.Character:FindFirstChild("HumanoidRootPart")
+        if closestHumanoidRootPart then
+            local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+            if not teleportDistance or distance <= teleportDistance then
+                teleportSound:Play()
+
+
+                local animationTrack = humanoid:LoadAnimation(teleportAnimation)
+                animationTrack:Play()
+
+
+                humanoidRootPart.CFrame = closestHumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+
+
+                animationTrack.Stopped:Connect(function()
+                    animationTrack:Stop()
+                end)
+            else
+                warn("No players is in the right studs")
+            end
+        end
+    end
+	end
+local char = game.Players.LocalPlayer.Character
+
+getgenv().LArmCol = char['Left Arm'].ChildAdded:Connect(function(pp)
+    if pp.Name == 'WaterPalm' then
+        for i, v in pairs(pp:WaitForChild('ConstantEmit'):GetChildren()) do
+            v.Color = ColorSequence.new{
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 0)), 
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))  
+            }
+        end
+
+        pp:WaitForChild('WaterTrail').Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 0)), 
+            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))  
+        }
+    end
+end)
+
+getgenv().CCol = char.ChildAdded:Connect(function(pp)
+    if pp.Name == 'Effects' then
+        for i = 1, 55 do
+            for i, v in pairs(pp:GetDescendants()) do
+                if v:IsA('ParticleEmitter') then 
+                    v.Color = ColorSequence.new{
+                        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 0)), 
+                        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))  
+                    }
+                end
+            end
+            task.wait()
+        end
+    end
+end)
+
+getgenv().RArmCol = char['Right Arm'].ChildAdded:Connect(function(pp)
+    if pp.Name == 'WaterPalm' then
+        for i, v in pairs(pp:WaitForChild('ConstantEmit'):GetChildren()) do
+            v.Color = ColorSequence.new{
+                ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 0)), 
+                ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))  
+            }
+        end
+
+        pp:WaitForChild('WaterTrail').Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 0)), 
+            ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 0))  
+        }
+    end
+end)
